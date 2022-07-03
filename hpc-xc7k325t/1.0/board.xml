@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<board schema_version="2.1" vendor="aliexpress.com" name="hpc_xc7k325t"
+    display_name="STLV7325T FPGA Development Board"
+    url="https://www.aliexpress.com/item/3256801088848039.html"
+    preset_file="preset.xml">
+  <images>
+    <image name="hpc-xc7k325t.jpg" display_name="STLV7325T" sub_type="board">
+      <description>STLV7325T Board File Image</description>
+    </image>
+  </images>
+  <compatible_board_revisions>
+    <revision id="0">1.0</revision>
+  </compatible_board_revisions>
+  <file_version>1.0</file_version>
+  <description>HPC FPGA Store Kintex 7 XC7K325T FPGA Development Board</description>
+
+  <components>
+    <component name="part0" display_name="STLV7325T FPGA Development Board" type="fpga" part_name="xc7k325tffg676-2" pin_map_file="part0_pins.xml" vendor="xilinx" spec_url="www.aliexpress.com/item/3256801088848039.html">
+      <description>FPGA part on the board</description>
+      <interfaces>
+      
+        <interface mode="slave" name="sysclk_200" type="xilinx.com:interface:diff_clock_rtl:1.0" of_component="sysclk_200" preset_proc="sysclk_200_preset">
+          <parameters>
+            <parameter name="frequency" value="200000000"/>
+          </parameters>
+          <preferred_ips>
+            <preferred_ip vendor="xilinx.com" library="ip" name="clk_wiz" order="0"/>
+          </preferred_ips>
+          <port_maps>
+            <port_map logical_port="CLK_P" physical_port="SYSCLK_200_P" dir="in">
+              <pin_maps>
+                <pin_map port_index="0" component_pin="SYSCLK_200_P"/>
+              </pin_maps>
+            </port_map>
+            <port_map logical_port="CLK_N" physical_port="SYSCLK_200_N" dir="in">
+              <pin_maps>
+                <pin_map port_index="0" component_pin="SYSCLK_200_N"/>
+              </pin_maps>
+            </port_map>
+          </port_maps>
+        </interface>
+
+        <interface mode="slave" name="sysclk_100" type="xilinx.com:signal:clock_rtl:1.0" of_component="sysclk_100" preset_proc="sysclk_100_preset">
+          <parameters>
+            <parameter name="frequency" value="100000000"/>
+          </parameters>
+          <preferred_ips>
+            <preferred_ip vendor="xilinx.com" library="ip" name="clk_wiz" order="0"/>
+          </preferred_ips>
+          <port_maps>
+            <port_map logical_port="CLK" physical_port="SYSCLK_100" dir="in">
+              <pin_maps>
+                <pin_map port_index="0" component_pin="SYSCLK_100"/>
+              </pin_maps>
+            </port_map>
+          </port_maps>
+        </interface>
+        
+        <interface mode="slave" name="reset_button" type="xilinx.com:signal:reset_rtl:1.0" of_component="reset_button">
+          <parameters>
+            <parameter name="rst_polarity" value="0"/>
+          </parameters>
+          <preferred_ips>
+            <preferred_ip vendor="xilinx.com" library="ip" name="proc_sys_reset" order="0"/>
+          </preferred_ips>
+          <port_maps>
+            <port_map logical_port="RST" physical_port="BTN0" dir="in">
+              <pin_maps>
+                <pin_map port_index="0" component_pin="BTN0"/>
+              </pin_maps>
+            </port_map>
+          </port_maps>
+        </interface>
+ 
+        <interface mode="slave" name="push_button" type="xilinx.com:interface:gpio_rtl:1.0" of_component="push_button" preset_proc="push_buttons_preset">
+          <preferred_ips>
+            <preferred_ip vendor="xilinx.com" library="ip" name="axi_gpio" order="0"/>
+          </preferred_ips>
+          <port_maps>
+            <port_map logical_port="TRI_I" physical_port="BTN1" dir="in">
+              <pin_maps>
+                <pin_map port_index="0" component_pin="BTN1"/>
+              </pin_maps>
+            </port_map>
+          </port_maps>
+        </interface>
+
+        <interface mode="slave" name="push_buttons" type="xilinx.com:interface:gpio_rtl:1.0" of_component="push_buttons" preset_proc="push_buttons_preset">
+          <preferred_ips>
+            <preferred_ip vendor="xilinx.com" library="ip" name="axi_gpio" order="0"/>
+          </preferred_ips>
+          <port_maps>
+            <port_map logical_port="TRI_I" physical_port="push_buttons_tri_i" dir="in" left="1" right="0">
+              <pin_maps>
+                <pin_map port_index="0" component_pin="BTN0"/>
+                <pin_map port_index="1" component_pin="BTN1"/>
+              </pin_maps>
+            </port_map>
+          </port_maps>
+        </interface>
+
+        <interface mode="master" name="leds" type="xilinx.com:interface:gpio_rtl:1.0" of_component="leds" preset_proc="leds_preset">
+          <preferred_ips>
+            <preferred_ip vendor="xilinx.com" library="ip" name="axi_gpio" order="0"/>
+          </preferred_ips>
+          <port_maps>
+            <port_map logical_port="TRI_O" physical_port="leds_tri_o" dir="out" left="7" right="0">
+              <pin_maps>
+                <pin_map port_index="0" component_pin="LED0"/>
+                <pin_map port_index="1" component_pin="LED1"/>
+                <pin_map port_index="2" component_pin="LED2"/>
+                <pin_map port_index="3" component_pin="LED3"/>
+                <pin_map port_index="4" component_pin="LED4"/>
+                <pin_map port_index="5" component_pin="LED5"/>
+                <pin_map port_index="6" component_pin="LED6"/>
+                <pin_map port_index="7" component_pin="LED7"/>
+              </pin_maps>
+            </port_map>
+          </port_maps>
+        </interface>
+
+      </interfaces>
+    </component>
+      
+    <component name="sysclk_200" display_name="200MHz system differential clock" type="chip" sub_type="system_clock" major_group="Clock Sources">
+      <description>2.5V LVDS differential 200 MHz oscillator used as system clock on the board</description>
+      <parameters>
+        <parameter name="frequency" value="200000000"/>
+      </parameters>
+    </component>
+
+    <component name="sysclk_100" display_name="100MHz system single-ended clock" type="chip" sub_type="system_clock" major_group="Clock Sources">
+      <description>2.5V single-ended 100 MHz oscillator used as system clock on the board</description>
+      <parameters>
+        <parameter name="frequency" value="100000000"/>
+      </parameters>
+    </component>
+
+    <component name="reset_button" display_name="System Reset" type="chip" sub_type="system_reset" major_group="Reset">
+      <description>Push Button K2, Active Low</description>
+    </component>
+
+    <component name="push_button" display_name="Push Button" type="chip" sub_type="push_button" major_group="General Purpose Input or Output">
+      <description>Push Button K3, Active Low</description>
+    </component>
+
+    <component name="push_buttons" display_name="Push Buttons" type="chip" sub_type="push_button" major_group="General Purpose Input or Output">
+      <description>Push Buttons K2, K3 Active Low</description>
+    </component>
+
+    <component name="leds" display_name="Board LEDs" type="chip" sub_type="led" major_group="General Purpose Input or Output">
+      <description>LEDs 7 to 0, Active Low; 2 to 0 are also visible externally.</description>
+    </component>
+
+  </components>
+
+  <connections>
+
+    <connection name="part0_sysclk200" component1="part0" component2="sysclk_200">
+      <connection_map name="part0_sysclk200" typical_delay="5" c1_st_index="1" c1_end_index="2" c2_st_index="0" c2_end_index="1"/>
+    </connection>
+    <connection name="part0_sysclk133" component1="part0" component2="sysclk_100">
+      <connection_map name="part0_sysclk100" typical_delay="5" c1_st_index="3" c1_end_index="3" c2_st_index="0" c2_end_index="0"/>
+    </connection>
+
+    <connection name="part0_reset_button" component1="part0" component2="reset_button">
+      <connection_map name="part0_reset" typical_delay="5" c1_st_index="8" c1_end_index="8" c2_st_index="0" c2_end_index="0"/>
+    </connection>
+    <connection name="part0_push_button" component1="part0" component2="push_button">
+      <connection_map name="part0_push_button" typical_delay="9" c1_st_index="9" c1_end_index="9" c2_st_index="0" c2_end_index="0"/>
+    </connection>
+    <connection name="part0_push_buttons" component1="part0" component2="push_buttons">
+      <connection_map name="part0_push_buttons" typical_delay="5" c1_st_index="8" c1_end_index="9" c2_st_index="0" c2_end_index="1"/>
+    </connection>
+    
+    <connection name="part0_leds" component1="part0" component2="leds">
+      <connection_map name="part0_leds" typical_delay="5" c1_st_index="10" c1_end_index="17" c2_st_index="0" c2_end_index="7"/>
+    </connection>
+
+  </connections>
+
+  <jtag_chains>
+    <jtag_chain name="chain1">
+      <position name="0" component="part0"/>
+    </jtag_chain>
+  </jtag_chains>
+</board>
