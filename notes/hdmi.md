@@ -44,8 +44,20 @@ You will need the following items to run this test:
 
 ### Board Files
 
-This assumes that you have checked out the *STLV7325T FPGA Development Board*
-board files and added the path to Vivado.
+Clone the board repository to your home directory.
+
+    $ git clone https://github.com/rriggs/kintex-7-stlv7325t-board-files
+    
+Add the board files to Vivado by running the following command:
+
+    > set_param board.repoPaths [list "~/kintex-7-stlv7325t-board-files"]
+
+This assumes your Git repo is checked out at `~/kintex-7-stlv7325t-board-files`.
+
+Tcl does not expand the tilde to your home directory in Vivado, so you must
+use the full pathname.
+
+Now check that the board is found:
 
     > get_boards ali*
     aliexpress.com:hpc_xc7k325t:1.0
@@ -64,11 +76,22 @@ In this section we create the block design for the FPGA board and export
 the bitstream file.
 
  1. Start Vivado
+ 1. If you have not added the path to the board files, do so now.
  1. Select *Create Project*
  1. Select *Next* in the *New Project* window
- 1. Use the `hdmi` for the project name and click *Next*
- 1. Select *RTL Project* and click *Next*
+ 1. Use the `hdmi` for the project name, leave *Create project subdirectory* selected, and click *Next*
+ 1. Select *RTL Project* with *Do not specify sources at this time* selected, and click *Next*
  1. Select the *Boards* tab, filter on vendor "aliexpress.com", select the *STLV7325T FPGA Development Board*, and click *Next*
+ 1. Click the *Finish* button.
+ 1. We are going to add the Digilent IP repository to Vivado
+    1. Click the *Settings* icon (a gear).
+    1. Select *Project Settings | IP | Repository*
+    1. Click the *Plus* icon.
+    1. Find and highlight the `vivado-library` directory checked out earlier.
+    1. Click the *Select* button.
+    1. In the pop-up window, note that it added 64 IPs (maybe more).
+    1. Click the *OK* button in the pop-up window.
+    1. Click *OK* in the *Settings* window.
  1. In Vivado, under *IP Integrator*, select *Create Block Design*
  1. Use the name `hdmi_microblaze` in the *Create Block Design* window and click *OK*
  1. In the *BLOCK DESIGN* window, select the *Board* tab
@@ -78,29 +101,48 @@ the bitstream file.
  1. Change the clk_out1 frequency to 148.5MHz
  1. Change the *Reset Type* to *Active Low*.
  1. Click *OK*.
- 1. Click *Run Connection Automation* in the green bar at the top of the *Diagram* window and then click *OK*
- 1. Click the *Search* icon in the the *Diagram* window. Search for "Video Test Pattern Generator" and add it to the block desgin.
- 1. Search for "Video Timing Controller" and add that to the block design.
+ 1. Click *Run Connection Automation* in the green bar at the top of the *Diagram* window and then click *OK* to connect the reset button.
+ 1. Click the *Plus* icon in the the *Diagram* window.
+ 1. Search for "Video Test Pattern Generator" (TPG) and add it to the block desgin.
+ 1. Search for "Video Timing Controller" (VTC) and add that to the block design.
  1. Open the *Video Timing Controller* block.
  1. Deselect both "Includ AXI4-lit Interface" and "Enable Detection".
  1. Switch to the *Default/Constant* tab.       
  1. Select "1080p" as the Video Mode and then click "OK".
- 1. Search for "AXI4-Stream to Video Out" and add that to the block design.
- 1. 
- 
- 
+ 1. Search for "AXI4-Stream to Video Out" (SVO) and add that to the block design.
+ 1. Connect `m_axis_video` of *TPG* to `video_in` of *SVO*.
+ 1. Connect `vtiming_out` of *VTG* to `timing_in` of *SVO*.
+ 1. Connect `vtg_cg` of *SVO* to `gen_clken` on the *VTG*.
+ 1. Connect `sof_state_out` of *SVO* to `sof_state` of the *VTG*.
+ 1. Click *Run Connection Automation* in the green bar at the top of the *Diagram* window, select *All Automation* and then click *OK* to connect the clocks.
+ 1. Note that this connected a processor system reset.
  1. Search for "Constant" and add that to the block design.
  1. Select the "Constant" block and, in the *Block Properties* window, rename it to "one".
  1. Connect the constant block to the following inputs:
     1. `clken` on the *Video Timing Controller* block
     1. `aclken` on the *AXI4-Stream to Video Out* block
     1. `vid_io_out_ce` on the *AXI4-Stream to Video Out* block
- 1. ...
+ 1. Connect the `aresetn` on the *SVO* to `peripheral_aresetn`.
+ 1. Connect the `fid` on the *TPG* to the `fid` on the *SVO*.
+ 1. Add a *MicroBlaze* block to the block design and configure the processor.
+    1. Click on *Run Block Automation*.
+    1. Select the *Microcontroller* preset.
+    1. Change the *Local Memory* to 32KB.
+    1. Click *OK*.
+    1. Click *Run Connection Automation* in the green bar at the top of the *Diagram* window and then click *OK* to connect the AXI slave interface.
+    1. Note that this has added an interrupt controller and an concat block for connecting the interrupts.
  1. Add an AXI Timer block to the block design.
  1. Connect the interrupt output of the *AXI Timer* to the interrupt concat block.
  1. Add the USB UART from the Blocks tab as an *AXI Uartlite* device.
  1. Connect the interrupt output of the *AXI Uartlite* to the interrupt concat block.
- 1. Double-click the *AXI Uartlite* and change the baud rate to 115200.
+ 1. Double-click the *AXI Uartlite*, switch to the *IP Configuration* tab, change the baud rate to 115200, then click *OK*.
+ 1. Click *Run Connection Automation* in the green bar at the top of the *Diagram* window, select *All Automation* and then click *OK* to connect AXI interfaces.
+ 1. Add the *HDMI* block from the Blocks tab to the block design. This will add a *RGB to DVI Video Encoder* (Encoder).
+ 1. Click *Run Connection Automation* in the green bar at the top of the *Diagram* window and then click *OK* to connect the PixelClk.
+ 1. Connect `vid_io_out` from *SVO* to `RGB` on the *Encoder*.
+ 1. Connect `aRst` on the *Encoder* to `peripheral_reset` on the *Reset Block*.
+ 1. Double-click the *Encoder* block and change the *MMCM/PLL* setting to *MMCM*.
+ 1. Verify that the TMDS clock range is set for > 120MHz and click "OK*.
  1. Add the `hdmi.xdc` file from the board repository.
     1. Click on the `Sources` tab.
     1. Click on the `+` icon.
@@ -113,7 +155,15 @@ the bitstream file.
     1. Verify that it matches the *Constraints* below.
     1. Save the changes by pressing Ctrl-S.
  1. Create the wrapper script.
+    1. Under *Sources|Design Sources* right click on `hdmi_microblaze` and select *Create HDL Wrapper...*.
+    1. Verify that *Let Vivada manage wrapper* is selected and click *OK*.
  1. Generate the bitstream.
+ 1. When the bitstream generation is complete, you can click on *Cancel* in the *Bitstream Generation Completed* pop-up.
+ 1. Export the hardware design.
+    1. Click on *File|Export|Export Hardware...*
+    1. Click *Next*.
+    1. Select *Include bitstream* and click *Next*.
+    1. Use the default values and click *Finish*.
 
 <div style="page-break-before: always"></div>
 
@@ -155,7 +205,50 @@ enough with the tools to work out what to do.
  1. Start Vitis by selecting `Tools | Launch Vitis IDE` in Vivado.
  1. Create a new workspace adjacent to your Vivado project folder called
     `workspace`.
- 1. 
+ 1. Click on `File|New|Application Project...`
+ 1. Click *Next* to go to the "Choose your platform" screen.
+ 1. Click on the *Create a new platform* tab.
+ 1. Select "Provide your XSA file..." and click on *Browse*.
+ 1. Navigate to the Vivado `hdmi` project directory, select the `hdmi_microblaze_wrapper.xsa` file, and click *Open*.
+ 1. Click on *Next*.
+ 1. Type "hdmi" in the *Application project name* dialog. It will fill in `hdmi_system` in the system project name. Click *Next*.
+ 1. Select "Standalone" (the default) for the *Operating System* and click *Next*.
+ 1. Select "Hello World" and click *Finish*.
+ 1. Double-click the `hdmi_system|hdmi|src|helloworld.c` file.
+ 1. Replace the contents of the `helloworld.c` file wirh the code from below.
+ 1. Highlight the "hdmi" folder.
+ 1. Click the *Build* icon (hammer).
+
+### Program FPGA
+
+We now need to power on the FPGA, connect the programmer, and connect serial and HDMI cables.
+
+ 1. Plug the power cable into the FPGA.
+ 1. Plug in the miniUSB cable to the USB serial port and computer.
+ 1. Plug in the HDMI cable to the FPGA and monitor.
+ 1. Turn on the monitor.
+ 1. Plug the JTAG programmer into the FPGA and connect it to the computer.
+ 1. Power on the FPGA.
+ 1. Open a serial terminal. (I use PuTTY.)
+ 1. Set the baud rate to 115200.
+ 1. Select the serial port the FPGA is connected to (`/dev/ttyUSB0` for me).
+ 1. Open the serial console.
+
+And now we will program the FPGA, first with the bitstream, then with the firmware.
+
+ 1. Right click on the `hdmi_system` project in the *Explorer* window and select `Program Device`.
+ 1. Click the *Program* button.
+ 1. Right clikc on the `hdmi` sub-project in the *Explorer* window and select `Run As|Launch Hardware (Single Application Debug)`
+ 1. Verify the serial console output matches the output below.
+ 1. Verify that the color bars are being displayed on the monitor.
+
+And that's it. If you recall from the block design, the test pattern generator
+can generate a number of test patterns. Experiment with the code below to
+invoke the different test patterns available.
+
+Note that if you do this, you will need to switch to the *Debug* perspective
+in Vitis and click the "Disconnect" icon before switching back to the *Design*
+perspective to re-launch the firmware.
 
 <div style="page-break-before: always"></div>
 
@@ -207,6 +300,16 @@ int main()
     cleanup_platform();
     return 0;
 }
+```
+
+### Serial Console
+
+```
+Ready status 1
+ Idle status 1
+ Done status 0
+Resolution is 1920x1080
+Successfully displayed color bars
 ```
 
 
