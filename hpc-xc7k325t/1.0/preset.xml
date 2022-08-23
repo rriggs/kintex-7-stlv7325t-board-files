@@ -54,7 +54,7 @@
           <user_parameter name="CONFIG.C_IS_DUAL" value="1"/> 
           <user_parameter name="CONFIG.C_GPIO2_WIDTH" value="1"/> 
           <user_parameter name="CONFIG.C_ALL_INPUTS_2" value="1"/> 
-	  <user_parameter name="CONFIG.C_ALL_OUTPUTS_2" value="0"/>
+          <user_parameter name="CONFIG.C_ALL_OUTPUTS_2" value="0"/>
         </user_parameters>
     </ip>
     <ip vendor="xilinx.com" library="ip" name="iomodule" ip_interface="GPIO1">
