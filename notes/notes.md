@@ -525,137 +525,137 @@ Note that the SIZE or WIDTH values here are
 set to "2" which is the number of buttons we have.
 
 
-  <ip_preset preset_proc_name="push_button_preset">
-    <ip vendor="xilinx.com" library="ip" name="axi_gpio" ip_interface="GPIO">
-        <user_parameters>
-          <user_parameter name="CONFIG.C_GPIO_WIDTH" value="1"/> 
-          <user_parameter name="CONFIG.C_ALL_INPUTS" value="1"/> 
-	      <user_parameter name="CONFIG.C_ALL_OUTPUTS" value="0"/>
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="axi_gpio" ip_interface="GPIO2">
-        <user_parameters>
-          <user_parameter name="CONFIG.C_IS_DUAL" value="1"/> 
-          <user_parameter name="CONFIG.C_GPIO2_WIDTH" value="1"/> 
-          <user_parameter name="CONFIG.C_ALL_INPUTS_2" value="1"/> 
-	  <user_parameter name="CONFIG.C_ALL_OUTPUTS_2" value="0"/>
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="iomodule" ip_interface="GPIO1">
-        <user_parameters>
-          <user_parameter name="CONFIG.C_USE_GPI1" value="1"/> 
-          <user_parameter name="CONFIG.C_GPI1_SIZE" value="1"/> 
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="iomodule" ip_interface="GPIO2">
-        <user_parameters>
-          <user_parameter name="CONFIG.C_USE_GPI2" value="1"/> 
-          <user_parameter name="CONFIG.C_GPI2_SIZE" value="1"/> 
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="iomodule" ip_interface="GPIO3">
-        <user_parameters>
-          <user_parameter name="CONFIG.C_USE_GPI3" value="1"/> 
-          <user_parameter name="CONFIG.C_GPI3_SIZE" value="1"/> 
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="iomodule" ip_interface="GPIO4">
-        <user_parameters>
-          <user_parameter name="CONFIG.C_USE_GPI4" value="1"/> 
-          <user_parameter name="CONFIG.C_GPI4_SIZE" value="1"/> 
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="microblaze_mcs" ip_interface="GPIO1">
-        <user_parameters>
-          <user_parameter name="CONFIG.USE_GPI1" value="1"/> 
-          <user_parameter name="CONFIG.GPI1_SIZE" value="1"/> 
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="microblaze_mcs" ip_interface="GPIO2">
-        <user_parameters>
-          <user_parameter name="CONFIG.USE_GPI2" value="1"/> 
-          <user_parameter name="CONFIG.GPI2_SIZE" value="1"/> 
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="microblaze_mcs" ip_interface="GPIO3">
-        <user_parameters>
-          <user_parameter name="CONFIG.USE_GPI3" value="1"/> 
-          <user_parameter name="CONFIG.GPI3_SIZE" value="1"/> 
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="microblaze_mcs" ip_interface="GPIO4">
-        <user_parameters>
-          <user_parameter name="CONFIG.USE_GPI4" value="1"/> 
-          <user_parameter name="CONFIG.GPI4_SIZE" value="1"/> 
-        </user_parameters>
-    </ip>
-  </ip_preset>
+    <ip_preset preset_proc_name="push_button_preset">
+      <ip vendor="xilinx.com" library="ip" name="axi_gpio" ip_interface="GPIO">
+          <user_parameters>
+            <user_parameter name="CONFIG.C_GPIO_WIDTH" value="1"/> 
+            <user_parameter name="CONFIG.C_ALL_INPUTS" value="1"/> 
+	    <user_parameter name="CONFIG.C_ALL_OUTPUTS" value="0"/>
+          </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="axi_gpio" ip_interface="GPIO2">
+          <user_parameters>
+            <user_parameter name="CONFIG.C_IS_DUAL" value="1"/> 
+            <user_parameter name="CONFIG.C_GPIO2_WIDTH" value="1"/> 
+            <user_parameter name="CONFIG.C_ALL_INPUTS_2" value="1"/> 
+            <user_parameter name="CONFIG.C_ALL_OUTPUTS_2" value="0"/>
+          </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="iomodule" ip_interface="GPIO1">
+          <user_parameters>
+            <user_parameter name="CONFIG.C_USE_GPI1" value="1"/> 
+            <user_parameter name="CONFIG.C_GPI1_SIZE" value="1"/> 
+          </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="iomodule" ip_interface="GPIO2">
+          <user_parameters>
+            <user_parameter name="CONFIG.C_USE_GPI2" value="1"/> 
+            <user_parameter name="CONFIG.C_GPI2_SIZE" value="1"/> 
+          </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="iomodule" ip_interface="GPIO3">
+          <user_parameters>
+            <user_parameter name="CONFIG.C_USE_GPI3" value="1"/> 
+            <user_parameter name="CONFIG.C_GPI3_SIZE" value="1"/> 
+          </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="iomodule" ip_interface="GPIO4">
+          <user_parameters>
+            <user_parameter name="CONFIG.C_USE_GPI4" value="1"/> 
+            <user_parameter name="CONFIG.C_GPI4_SIZE" value="1"/> 
+          </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="microblaze_mcs" ip_interface="GPIO1">
+          <user_parameters>
+            <user_parameter name="CONFIG.USE_GPI1" value="1"/> 
+            <user_parameter name="CONFIG.GPI1_SIZE" value="1"/> 
+          </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="microblaze_mcs" ip_interface="GPIO2">
+          <user_parameters>
+            <user_parameter name="CONFIG.USE_GPI2" value="1"/> 
+            <user_parameter name="CONFIG.GPI2_SIZE" value="1"/> 
+          </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="microblaze_mcs" ip_interface="GPIO3">
+          <user_parameters>
+            <user_parameter name="CONFIG.USE_GPI3" value="1"/> 
+            <user_parameter name="CONFIG.GPI3_SIZE" value="1"/> 
+          </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="microblaze_mcs" ip_interface="GPIO4">
+          <user_parameters>
+            <user_parameter name="CONFIG.USE_GPI4" value="1"/> 
+            <user_parameter name="CONFIG.GPI4_SIZE" value="1"/> 
+          </user_parameters>
+      </ip>
+    </ip_preset>
 
-  <ip_preset preset_proc_name="push_buttons_preset">
-    <ip vendor="xilinx.com" library="ip" name="axi_gpio" ip_interface="GPIO">
-        <user_parameters>
-          <user_parameter name="CONFIG.C_GPIO_WIDTH" value="2"/> 
-          <user_parameter name="CONFIG.C_ALL_INPUTS" value="1"/> 
-	      <user_parameter name="CONFIG.C_ALL_OUTPUTS" value="0"/>
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="axi_gpio" ip_interface="GPIO2">
-        <user_parameters>
-          <user_parameter name="CONFIG.C_IS_DUAL" value="1"/> 
-          <user_parameter name="CONFIG.C_GPIO2_WIDTH" value="2"/> 
-          <user_parameter name="CONFIG.C_ALL_INPUTS_2" value="1"/> 
-	  <user_parameter name="CONFIG.C_ALL_OUTPUTS_2" value="0"/>
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="iomodule" ip_interface="GPIO1">
-        <user_parameters>
-          <user_parameter name="CONFIG.C_USE_GPI1" value="1"/> 
-          <user_parameter name="CONFIG.C_GPI1_SIZE" value="2"/> 
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="iomodule" ip_interface="GPIO2">
-        <user_parameters>
-          <user_parameter name="CONFIG.C_USE_GPI2" value="1"/> 
-          <user_parameter name="CONFIG.C_GPI2_SIZE" value="2"/> 
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="iomodule" ip_interface="GPIO3">
-        <user_parameters>
-          <user_parameter name="CONFIG.C_USE_GPI3" value="1"/> 
-          <user_parameter name="CONFIG.C_GPI3_SIZE" value="2"/> 
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="iomodule" ip_interface="GPIO4">
-        <user_parameters>
-          <user_parameter name="CONFIG.C_USE_GPI4" value="1"/> 
-          <user_parameter name="CONFIG.C_GPI4_SIZE" value="2"/> 
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="microblaze_mcs" ip_interface="GPIO1">
-        <user_parameters>
-          <user_parameter name="CONFIG.USE_GPI1" value="1"/> 
-          <user_parameter name="CONFIG.GPI1_SIZE" value="2"/> 
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="microblaze_mcs" ip_interface="GPIO2">
-        <user_parameters>
-          <user_parameter name="CONFIG.USE_GPI2" value="1"/> 
-          <user_parameter name="CONFIG.GPI2_SIZE" value="2"/> 
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="microblaze_mcs" ip_interface="GPIO3">
-        <user_parameters>
-          <user_parameter name="CONFIG.USE_GPI3" value="1"/> 
-          <user_parameter name="CONFIG.GPI3_SIZE" value="2"/> 
-        </user_parameters>
-    </ip>
-    <ip vendor="xilinx.com" library="ip" name="microblaze_mcs" ip_interface="GPIO4">
-        <user_parameters>
-          <user_parameter name="CONFIG.USE_GPI4" value="1"/> 
-          <user_parameter name="CONFIG.GPI4_SIZE" value="2"/> 
-        </user_parameters>
-    </ip>
-  </ip_preset>
+    <ip_preset preset_proc_name="push_buttons_preset">
+      <ip vendor="xilinx.com" library="ip" name="axi_gpio" ip_interface="GPIO">
+          <user_parameters>
+            <user_parameter name="CONFIG.C_GPIO_WIDTH" value="2"/> 
+            <user_parameter name="CONFIG.C_ALL_INPUTS" value="1"/> 
+	        <user_parameter name="CONFIG.C_ALL_OUTPUTS" value="0"/>
+          </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="axi_gpio" ip_interface="GPIO2">
+          <user_parameters>
+            <user_parameter name="CONFIG.C_IS_DUAL" value="1"/> 
+            <user_parameter name="CONFIG.C_GPIO2_WIDTH" value="2"/> 
+            <user_parameter name="CONFIG.C_ALL_INPUTS_2" value="1"/> 
+  	    <user_parameter name="CONFIG.C_ALL_OUTPUTS_2" value="0"/>
+          </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="iomodule" ip_interface="GPIO1">
+          <user_parameters>
+            <user_parameter name="CONFIG.C_USE_GPI1" value="1"/> 
+            <user_parameter name="CONFIG.C_GPI1_SIZE" value="2"/> 
+          </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="iomodule" ip_interface="GPIO2">
+          <user_parameters>
+            <user_parameter name="CONFIG.C_USE_GPI2" value="1"/> 
+            <user_parameter name="CONFIG.C_GPI2_SIZE" value="2"/> 
+           </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="iomodule" ip_interface="GPIO3">
+          <user_parameters>
+            <user_parameter name="CONFIG.C_USE_GPI3" value="1"/> 
+            <user_parameter name="CONFIG.C_GPI3_SIZE" value="2"/> 
+          </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="iomodule" ip_interface="GPIO4">
+          <user_parameters>
+            <user_parameter name="CONFIG.C_USE_GPI4" value="1"/> 
+            <user_parameter name="CONFIG.C_GPI4_SIZE" value="2"/> 
+          </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="microblaze_mcs" ip_interface="GPIO1">
+          <user_parameters>
+            <user_parameter name="CONFIG.USE_GPI1" value="1"/> 
+            <user_parameter name="CONFIG.GPI1_SIZE" value="2"/> 
+          </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="microblaze_mcs" ip_interface="GPIO2">
+          <user_parameters>
+            <user_parameter name="CONFIG.USE_GPI2" value="1"/> 
+            <user_parameter name="CONFIG.GPI2_SIZE" value="2"/> 
+          </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="microblaze_mcs" ip_interface="GPIO3">
+          <user_parameters>
+            <user_parameter name="CONFIG.USE_GPI3" value="1"/> 
+            <user_parameter name="CONFIG.GPI3_SIZE" value="2"/> 
+          </user_parameters>
+      </ip>
+      <ip vendor="xilinx.com" library="ip" name="microblaze_mcs" ip_interface="GPIO4">
+          <user_parameters>
+            <user_parameter name="CONFIG.USE_GPI4" value="1"/> 
+            <user_parameter name="CONFIG.GPI4_SIZE" value="2"/> 
+          </user_parameters>
+      </ip>
+    </ip_preset>
 
 As you can imagine, the LEDs inteface looks very similar.
 
